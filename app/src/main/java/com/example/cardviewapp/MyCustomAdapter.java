@@ -19,6 +19,14 @@ public class MyCustomAdapter extends RecyclerView.Adapter<MyCustomAdapter.Sports
 
     private List<Sport> sportList;
 
+    public static ItemClickListener clickListener;
+
+    public void setClickListener(ItemClickListener myListener){
+        this.clickListener = myListener;
+    }
+
+
+
     public MyCustomAdapter(List<Sport> sportList) {
         this.sportList = sportList;
     }
@@ -75,7 +83,7 @@ public class MyCustomAdapter extends RecyclerView.Adapter<MyCustomAdapter.Sports
     }
 
 
-    public static class SportsViewHolder extends RecyclerView.ViewHolder{
+    public static class SportsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         //Holds the references of the views within the item layout
         ImageView imageView;
         TextView title, description;
@@ -86,6 +94,17 @@ public class MyCustomAdapter extends RecyclerView.Adapter<MyCustomAdapter.Sports
             imageView = itemView.findViewById(R.id.imageViewCard);
             title = itemView.findViewById(R.id.title);
             description = itemView.findViewById(R.id.description);
+
+
+            itemView.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(clickListener != null){
+                clickListener.onClick(v, getAdapterPosition());
+            }
         }
     }
 
