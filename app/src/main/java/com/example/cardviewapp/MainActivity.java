@@ -65,7 +65,15 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         adapter.setClickListener(this);
 
         adapter = new MyCustomAdapter(sportList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //Vertical
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+        //Horizontal
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
         recyclerView.setAdapter(adapter);
 
 
